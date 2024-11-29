@@ -1,0 +1,13 @@
+*~
+~*
+
+# OS files
+**/.DS_Store
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Local source and binary files
+.src/
+.bin/

@@ -1,0 +1,16 @@
+github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
+github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
+github.com/hashicorp/go-set/v3 v3.0.0 h1:CaJBQvQCOWoftrBcDt7Nwgo0kdpmrKxar/x2o6pV9JA=
+github.com/hashicorp/go-set/v3 v3.0.0/go.mod h1:IEghM2MpE5IaNvL+D7X480dfNtxjRXZ6VMpK3C8s2ok=
+github.com/shoenig/test v1.12.0 h1:5gu0WaxkayLUad6B/VCnBWMi5VR7oVYCw/d34SU1ed0=
+github.com/shoenig/test v1.12.0/go.mod h1:UxJ6u/x2v/TNs/LoLxBNJRV9DiwBBKYxXSyczsBHFoI=
+noxide.lol/go/atomicfs v1.0.0 h1:NSlmJx1rMZVO2g+ytcWS2s1ptbJGvykC4vWANfKGdjY=
+noxide.lol/go/atomicfs v1.0.0/go.mod h1:eaaNQy8PMvKTxpqGMC3xk61nx2++wXYFwGTGSeoMWpI=
+noxide.lol/go/babycli v0.1.4 h1:gdgpLn1ydzy7VK3ZQAIbHnnPk1yHfyd6OYLo9UsWulY=
+noxide.lol/go/babycli v0.1.4/go.mod h1:WatWwUui1Zf1KtSz4EzLtOkGkljrhOFfXfLHVoBRDj4=
+noxide.lol/go/stacks v1.0.0 h1:g4MPkizQF/6B3u1ejGxWDIjL1zM/MSHMzoS1DEZTOWY=
+noxide.lol/go/stacks v1.0.0/go.mod h1:rwC8UA5l8uwwfRNAKuBSI+7hpP8ilJVK3gozAn7vjzM=
+noxide.lol/go/ulog v0.1.0 h1:NBvk+apaBnDuohHvX32V97FvVa5tCbWDHWdeh72BHv0=
+noxide.lol/go/ulog v0.1.0/go.mod h1:ikJUzYrOlH8SlSnV29eg7j5QdLvAZf4jxi3NJigTO0k=
+noxide.lol/go/xtc v0.2.0 h1:KxgaQ28Moc4T0O22wuj3698rhB0srAWoTpAhtgp4DXA=
+noxide.lol/go/xtc v0.2.0/go.mod h1:WaIsAXK/e1jY8EP00bXYoUAxGS4Jevbwc2JnKeyt5F8=
