@@ -1,33 +1,28 @@
-camel jockey
-carpet muncher
-chink
-clit
-cock sucker
-coom
-coomer
-coon
-coochie
-cum
-dago
-dirty sanchez
-dike
-dyke
-fag
-faggot
-fudge packer
-gook
-heeb
-hershey highway
-jizz
-kike
-kyke
-nigger
-rimming
-spic
-tit
-titty
-tittyfuck
-tittyfucker
-wetback
-wigger
-wop
+camel jockey     -> (?i)\bc[a@]m[e3]l[\s-]*j[o0]ck[e3]y[s$]?\b
+carpet muncher   -> (?i)\bc[a@]rp[e3]t[\s-]*munch[e3]r[s$]?\b
+chink            -> (?i)\bch[i1]nk[s$]?\b
+clit             -> (?i)\bcl[i1]t[s$]?\b
+cock sucker      -> (?i)\bc[o0]ck[\s-]*[s$]uck[e3]r[s$]?\b
+coom             -> (?i)\bc[o0]+m[s$]?\b
+coomer           -> (?i)\bc[o0]+m[e3]r[s$]?\b
+coon             -> (?i)\bc[o0]+n[s$]?\b
+cooch            -> (?i)\bc[o0]+ch\b
+coochie          -> (?i)\bc[o0]+chi[e3][s$]?\b
+cum              -> (?i)\bcum[s$]?\b
+dago             -> (?i)\bd[a@]g[o0][s$]?\b
+dyke             -> (?i)\bd[i1y]k[e3][s$]?\b
+fag              -> (?i)\bf[a@]g[s$]?\b
+faggot           -> (?i)\bf[a@]gg[o0]t[s$]?\b
+gook             -> (?i)\bg[o0]+k[s$]?\b
+heeb             -> (?i)\bh[e3]b[s$]?\b
+jizz             -> (?i)\bj[i1]z+\b
+kyke             -> (?i)\bk[i1y]k[e3][s$]?\b
+nigger           -> (?i)\bn[i1]g+[e3]r[zs$]?\b
+spic             -> (?i)\bsp[i1][ck][s$]?\b
+tit              -> (?i)\bt[i1]t[s$]?\b
+titty            -> (?i)\bt[i1]tty[s$]?\b
+tittyfuck        -> (?i)\bt[i1]ttyfuc?k?[s$]?\b
+tittyfucker      -> (?i)\bt[i1]ttyfuc?k?[e3]r[s$]?\b
+wetback          -> (?i)\bw[e3]tb[a@]c?k?[s$]?\b
+wigger           -> (?i)\bw[i1]gg[e3]r[s$]?\b
+wop              -> (?i)\bw[o0]p[s$]?\b

@@ -30,8 +30,7 @@ func (b *Builder) Build(destination string) error {
 	reader := strings.NewReader(Source)
 	scanner := bufio.NewScanner(reader)
 	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		art.Add(line)
+		art.Add(scanner.Text())
 	}
 	if err := scanner.Err(); err != nil {
 		return err

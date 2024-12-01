@@ -1,39 +1,40 @@
 package wordlist
 
 import (
-	"cmp"
+	"encoding/json"
 	"io"
+	"regexp"
 	"strings"
-
-	"github.com/hashicorp/go-set/v3"
 )
 
 type Artifact struct {
-	words *set.TreeSet[string]
+	words map[string]*regexp.Regexp
 }
 
 func NewArtifact() *Artifact {
 	return &Artifact{
-		words: set.NewTreeSet(cmp.Compare[string]),
+		words: make(map[string]*regexp.Regexp, 32),
 	}
 }
 
-func (a *Artifact) Add(word string) {
-	a.words.Insert(word)
-	a.words.Insert(word + "s")
-	a.words.Insert(strings.ReplaceAll(word, " ", "-"))
-	a.words.Insert(strings.ReplaceAll(word, "i", "1"))
-	a.words.Insert(strings.ReplaceAll(word, "o", "0"))
-	a.words.Insert(strings.ReplaceAll(word, "a", "@"))
-	a.words.Insert(strings.ReplaceAll(word, "s", "$"))
+func (a *Artifact) Add(line string) {
+	// given line is directly from words.txt which is in the form
+	// <word(s)> -> <regexp>
+
+	tokens := strings.Split(line, "->")
+	if len(tokens) != 2 {
+		return
+	}
+
+	original := strings.TrimSpace(tokens[0])
+	regex := strings.TrimSpace(tokens[1])
+
+	re := regexp.MustCompile(regex)
+	a.words[original] = re
 }
 
 func (a *Artifact) Write(w io.Writer) error {
-	for word := range a.words.Items() {
-		_, err := io.WriteString(w, word+"\n")
-		if err != nil {
-			return err
-		}
-	}
-	return nil
+	enc := json.NewEncoder(w)
+	enc.SetIndent("", " ")
+	return enc.Encode(a.words)
 }
