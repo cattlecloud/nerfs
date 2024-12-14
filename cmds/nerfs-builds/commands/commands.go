@@ -2,7 +2,10 @@ package commands
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 
+	"cattlecloud.net/nerfs"
 	"cattlecloud.net/nerfs/cmds/nerfs-builds/domains"
 	"cattlecloud.net/nerfs/cmds/nerfs-builds/wordlist"
 	"noxide.lol/go/babycli"
@@ -33,7 +36,7 @@ func invoke(args []string) babycli.Code {
 							Short:   "o",
 							Help:    "specify output FILE",
 							Default: &babycli.Default{
-								Value: "/tmp/wordlist.txt",
+								Value: filepath.Join(os.TempDir(), nerfs.WordsFile),
 								Show:  true,
 							},
 						},
@@ -59,7 +62,7 @@ func invoke(args []string) babycli.Code {
 							Short:   "o",
 							Help:    "specify output FILE",
 							Default: &babycli.Default{
-								Value: "/tmp/domains.txt",
+								Value: filepath.Join(os.TempDir(), nerfs.DomainsFile),
 								Show:  true,
 							},
 						},

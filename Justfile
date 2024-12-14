@@ -3,7 +3,8 @@ set shell := ["bash", "-u", "-c"]
 export scripts := ".github/workflows/scripts"
 export GOBIN := `echo $PWD/.bin`
 
-# print available commands
+# show available commands
+[private]
 default:
     @just --list
 
