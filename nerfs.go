@@ -3,6 +3,7 @@ package nerfs
 import (
 	"bufio"
 	"encoding/json"
+	"io"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -16,9 +17,63 @@ const (
 	WordsFile   = "wordlist.json"
 )
 
+// An Artifact contains the in-memory optimized form of the domain and word
+// block-list files created by the nerfs-builds tool.
+//
+// Create an Artifact by calling Load() with the directory of the compiled
+// artifacts.
 type Artifact struct {
 	domains *set.Set[string]
 	words   []*regexp.Regexp
+}
+
+// A Synopsis contains the result of analyzing some text.
+type Synopsis struct {
+	// Domains is the count of matching domains on the block list.
+	Domains int
+
+	// Words is the count of matching words on the block list.
+	Words int
+}
+
+// Any returns whether any domains or words appear on the block lists.
+func (s *Synopsis) Any() bool {
+	return s.Domains > 0 || s.Words > 0
+}
+
+// Synopsis analyzes the content in the given reader and identifies any domains
+// or words on one of the block lists.
+//
+// Note that this should be used carefully - scanning large text consumes lots
+// of CPU due to regular expression matching against every token. Many use cases
+// need only scan against blocked domains which is must faster.
+func (a *Artifact) Synopsis(r io.Reader) *Synopsis {
+	syn := new(Synopsis)
+	scanner := bufio.NewScanner(r)
+	scanner.Split(bufio.ScanWords)
+	for scanner.Scan() {
+		word := scanner.Text()
+		switch {
+		case a.matchDomain(word):
+			syn.Domains++
+		case a.matchWord(word):
+			syn.Words++
+		}
+	}
+	return syn
+}
+
+func (a *Artifact) matchDomain(s string) bool {
+	return a.domains.Contains(s)
+}
+
+func (a *Artifact) matchWord(s string) bool {
+	for _, reg := range a.words {
+		if reg.MatchString(s) {
+			return true
+		}
+	}
+	return false
 }
 
 func Load(directory string) (*Artifact, error) {
