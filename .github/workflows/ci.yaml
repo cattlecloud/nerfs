@@ -4,9 +4,9 @@ on:
     paths-ignore:
       - 'README.md'
       - 'LICENSE'
-    push:
-      branches:
-        - 'main'
+  push:
+    branches:
+      - 'main'
 jobs:
   run-lint:
     timeout-minutes: 5
