@@ -10,10 +10,12 @@ on:
 jobs:
   run-lint:
     timeout-minutes: 5
-    runs-on: ubuntu-24.04
+    runs-on: alpine-3
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
+          cache: false
           go-version-file: go.mod
       - uses: golangci/golangci-lint-action@v3
         with:
@@ -21,12 +23,13 @@ jobs:
           args: --config .github/workflows/scripts/golangci.yaml
   run-test:
     timeout-minutes: 5
-    runs-on: ubuntu-24.04
+    runs-on: alpine-3
     steps:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
       - uses: actions/setup-go@v5
         with:
+          cache: false
           go-version-file: go.mod
       - name: Run Go Test
         run: |
