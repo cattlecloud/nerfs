@@ -17,9 +17,10 @@ jobs:
         with:
           cache: false
           go-version-file: go.mod
-      - uses: golangci/golangci-lint-action@v3
+      - uses: golangci/golangci-lint-action@v6
         with:
           version: v1.62.2
+          skip-cache: true
           args: --config .github/workflows/scripts/golangci.yaml
   run-test:
     timeout-minutes: 5
