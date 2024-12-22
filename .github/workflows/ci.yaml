@@ -18,6 +18,10 @@ jobs:
         with:
           cache: false
           go-version-file: go.mod
+      - name: Show System
+        run: |
+          uname -a
+          just sysinfo
       - name: Run Go Test
         run: |
           just init tidy lint test
