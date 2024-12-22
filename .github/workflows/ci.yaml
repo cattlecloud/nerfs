@@ -8,23 +8,9 @@ on:
     branches:
       - 'main'
 jobs:
-  run-lint:
+  run-tests:
     timeout-minutes: 5
-    runs-on: alpine-3
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          cache: false
-          go-version-file: go.mod
-      - uses: golangci/golangci-lint-action@v6
-        with:
-          version: v1.62.2
-          skip-cache: true
-          args: --config .github/workflows/scripts/golangci.yaml
-  run-test:
-    timeout-minutes: 5
-    runs-on: alpine-3
+    runs-on: fedora-41
     steps:
       - uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
@@ -34,4 +20,4 @@ jobs:
           go-version-file: go.mod
       - name: Run Go Test
         run: |
-          just test
+          just init tidy lint test
