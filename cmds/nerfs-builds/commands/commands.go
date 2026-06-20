@@ -5,10 +5,10 @@ import (
 	"os"
 	"path/filepath"
 
+	"cattlecloud.net/go/babycli"
 	"cattlecloud.net/nerfs"
 	"cattlecloud.net/nerfs/cmds/nerfs-builds/domains"
 	"cattlecloud.net/nerfs/cmds/nerfs-builds/wordlist"
-	"noxide.lol/go/babycli"
 )
 
 func Invoke(args []string) babycli.Code {

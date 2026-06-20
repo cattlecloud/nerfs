@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
+	"cattlecloud.net/go/babycli"
 	"cattlecloud.net/nerfs/cmds/nerfs-builds/commands"
-	"noxide.lol/go/babycli"
 )
 
 func main() {

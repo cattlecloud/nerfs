@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"noxide.lol/go/atomicfs"
-	"noxide.lol/go/ulog"
+	"cattlecloud.net/go/atomicfs"
+	"cattlecloud.net/go/ulog"
 )
 
 var sources = []string{
