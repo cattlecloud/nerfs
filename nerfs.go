@@ -14,11 +14,11 @@ import (
 
 const (
 	DomainsFile = "domains.txt"
-	WordsFile   = "wordlist.json"
+	WordsFile   = "wordlist.txt"
 )
 
 // An Artifact contains the in-memory optimized form of the domain and word
-// block-list files created by the nerfs-builds tool.
+// block-list files created by the nerfs tool.
 //
 // Create an Artifact by calling Load() with the directory of the compiled
 // artifacts.
@@ -64,6 +64,11 @@ func (a *Artifact) Synopsis(r io.Reader) *Synopsis {
 }
 
 func (a *Artifact) matchDomain(s string) bool {
+	s, _ = strings.CutPrefix(s, "https://")
+	s, _ = strings.CutPrefix(s, "http://")
+	if i := strings.IndexAny(s, "/?#"); i >= 0 {
+		s = s[:i]
+	}
 	return a.domains.Contains(s)
 }
 

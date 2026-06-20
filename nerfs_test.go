@@ -112,3 +112,42 @@ visit example.org we have pOop and f4rts! example.xyz and example.com too!
 		must.True(t, syn.Any())
 	})
 }
+
+func TestArtifact_matchDomain(t *testing.T) {
+	t.Parallel()
+
+	a := &Artifact{
+		domains: set.From([]string{"example.com", "example.xyz"}),
+	}
+
+	cases := []struct {
+		input string
+		exp   bool
+	}{
+		{
+			input: "example.com",
+			exp:   true,
+		},
+		{
+			input: "https://example.com",
+			exp:   true,
+		},
+		{
+			input: "https://example.com/path",
+			exp:   true,
+		},
+		{
+			input: "https://safe.example.com/path",
+			exp:   false,
+		},
+		{
+			input: "other",
+			exp:   false,
+		},
+	}
+
+	for _, tc := range cases {
+		result := a.matchDomain(tc.input)
+		must.Eq(t, tc.exp, result)
+	}
+}
