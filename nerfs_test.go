@@ -62,14 +62,14 @@ func TestArtifact_Load(t *testing.T) {
 
 	art, lerr := Load(d)
 	must.NoError(t, lerr)
-	must.Size(t, 3, art.domains)
-	must.Len(t, 2, art.words)
+	must.Size(t, 3, art.(*artifact).domains)
+	must.Len(t, 2, art.(*artifact).words)
 }
 
 func TestSynopsis_matching(t *testing.T) {
 	t.Parallel()
 
-	a := &Artifact{
+	a := &artifact{
 		domains: set.From([]string{"example.com", "example.org", "example.xyz"}),
 		words: []*regexp.Regexp{
 			regexp.MustCompile(`p[oO0]+p`),
@@ -116,7 +116,7 @@ visit example.org we have pOop and f4rts! example.xyz and example.com too!
 func TestArtifact_matchDomain(t *testing.T) {
 	t.Parallel()
 
-	a := &Artifact{
+	a := &artifact{
 		domains: set.From([]string{"example.com", "example.xyz"}),
 	}
 

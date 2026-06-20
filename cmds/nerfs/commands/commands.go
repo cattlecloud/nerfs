@@ -1,10 +1,10 @@
 package commands
 
 import (
-	"fmt"
 	"os"
 
 	"cattlecloud.net/go/babycli"
+	"cattlecloud.net/go/ulog"
 	"cattlecloud.net/nerfs/cmds/nerfs/domains"
 	"cattlecloud.net/nerfs/cmds/nerfs/wordlist"
 )
@@ -40,17 +40,19 @@ func invoke(args []string) babycli.Code {
 						},
 					},
 					Function: func(c *babycli.Component) babycli.Code {
+						log := ulog.New("nerfs")
+
 						output := c.GetString("output")
 
 						buildDomains := domains.NewBuilder()
 						if err := buildDomains.Build(output); err != nil {
-							fmt.Println("build failure:", err)
+							log.E.Fmt("unable to build domains list: %v", err)
 							return babycli.Failure
 						}
 
 						buildWords := wordlist.NewBuilder()
 						if err := buildWords.Build(output); err != nil {
-							fmt.Println("build failure:", err)
+							log.E.Fmt("unable to build words list: %v", err)
 							return babycli.Failure
 						}
 
