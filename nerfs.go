@@ -14,17 +14,15 @@ import (
 
 const (
 	DomainsFile = "domains.txt"
-	WordsFile   = "wordlist.txt"
+	WordsFile   = "wordlist.json"
 )
 
 // An Artifact contains the in-memory optimized form of the domain and word
 // block-list files created by the nerfs tool.
 //
-// Create an Artifact by calling Load() with the directory of the compiled
-// artifacts.
-type Artifact struct {
-	domains *set.Set[string]
-	words   []*regexp.Regexp
+// Call Synopsis on some text to analyze it.
+type Artifact interface {
+	Synopsis(r io.Reader) *Synopsis
 }
 
 // A Synopsis contains the result of analyzing some text.
@@ -34,6 +32,11 @@ type Synopsis struct {
 
 	// Words is the count of matching words on the block list.
 	Words int
+}
+
+type artifact struct {
+	domains *set.Set[string]
+	words   []*regexp.Regexp
 }
 
 // Any returns whether any domains or words appear on the block lists.
@@ -47,7 +50,7 @@ func (s *Synopsis) Any() bool {
 // Note that this should be used carefully - scanning large text consumes lots
 // of CPU due to regular expression matching against every token. Many use cases
 // need only scan against blocked domains which is must faster.
-func (a *Artifact) Synopsis(r io.Reader) *Synopsis {
+func (a *artifact) Synopsis(r io.Reader) *Synopsis {
 	syn := new(Synopsis)
 	scanner := bufio.NewScanner(r)
 	scanner.Split(bufio.ScanWords)
@@ -63,7 +66,7 @@ func (a *Artifact) Synopsis(r io.Reader) *Synopsis {
 	return syn
 }
 
-func (a *Artifact) matchDomain(s string) bool {
+func (a *artifact) matchDomain(s string) bool {
 	s, _ = strings.CutPrefix(s, "https://")
 	s, _ = strings.CutPrefix(s, "http://")
 	if i := strings.IndexAny(s, "/?#"); i >= 0 {
@@ -72,7 +75,7 @@ func (a *Artifact) matchDomain(s string) bool {
 	return a.domains.Contains(s)
 }
 
-func (a *Artifact) matchWord(s string) bool {
+func (a *artifact) matchWord(s string) bool {
 	for _, reg := range a.words {
 		if reg.MatchString(s) {
 			return true
@@ -81,7 +84,7 @@ func (a *Artifact) matchWord(s string) bool {
 	return false
 }
 
-func Load(directory string) (*Artifact, error) {
+func Load(directory string) (Artifact, error) {
 	domainsFile := filepath.Join(directory, DomainsFile)
 	wordsFile := filepath.Join(directory, WordsFile)
 
@@ -95,7 +98,7 @@ func Load(directory string) (*Artifact, error) {
 		return nil, werr
 	}
 
-	return &Artifact{
+	return &artifact{
 		domains: domains,
 		words:   words,
 	}, nil
