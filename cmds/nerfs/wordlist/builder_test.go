@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"testing"
 
-	"cattlecloud.net/nerfs"
+	"cattlecloud.net/go/nerfs"
 	"github.com/shoenig/test/must"
 )
 
