@@ -19,6 +19,18 @@ var sources = []string{
 
 	// adult sites
 	"https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts",
+
+	// fake news sites
+	"https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-only/hosts",
+
+	// social sites
+	"https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social-only/hosts",
+
+	// more reddit sites
+	"https://gist.githubusercontent.com/shoenig/a831965d4dcb36e18034e4703c814f4b/raw/2afcb7642570b36a3ed25ebaab611a772eb3f879/blockreddit.txt",
+
+	// more sites
+	"https://gist.githubusercontent.com/shoenig/419256bc1e6938945df70e8bdd260e8e/raw/b5cc28e53b3c6e85d2a6a274dc7e544ce1670679/gistfile1.txt",
 }
 
 type Builder struct {
