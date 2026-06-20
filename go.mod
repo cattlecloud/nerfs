@@ -1,4 +1,4 @@
-module cattlecloud.net/nerfs
+module cattlecloud.net/go/nerfs
 
 go 1.26
 

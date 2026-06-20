@@ -4,9 +4,9 @@ import (
 	"os"
 
 	"cattlecloud.net/go/babycli"
+	"cattlecloud.net/go/nerfs/cmds/nerfs/domains"
+	"cattlecloud.net/go/nerfs/cmds/nerfs/wordlist"
 	"cattlecloud.net/go/ulog"
-	"cattlecloud.net/nerfs/cmds/nerfs/domains"
-	"cattlecloud.net/nerfs/cmds/nerfs/wordlist"
 )
 
 func Invoke(args []string) babycli.Code {

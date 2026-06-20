@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"cattlecloud.net/go/babycli"
-	"cattlecloud.net/nerfs/cmds/nerfs/commands"
+	"cattlecloud.net/go/nerfs/cmds/nerfs/commands"
 )
 
 func main() {

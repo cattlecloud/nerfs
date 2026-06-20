@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"cattlecloud.net/go/atomicfs"
+	"cattlecloud.net/go/nerfs"
 	"cattlecloud.net/go/ulog"
-	"cattlecloud.net/nerfs"
 )
 
 var sources = []string{
