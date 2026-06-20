@@ -1,0 +1,29 @@
+name: Build Release Artifact
+on:
+  workflow_dispatch:
+jobs:
+  compile:
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3
+      - uses: actions/setup-go@v6
+        with:
+          cache: true
+          go-version-file: go.mod
+      - name: Show System
+        run: |
+          uname -a
+          just sysinfo
+      - name: Build Artifact
+        run: |
+          just compile
+      - uses: actions/upload-artifact@v7
+        with:
+          name: "ubs"
+          path: ".bin/nerfs"
+          retention-days: 4
+          compression-level: 9
+          if-no-files-found: error
+          overwrite: true
