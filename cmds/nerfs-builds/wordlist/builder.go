@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"noxide.lol/go/atomicfs"
-	"noxide.lol/go/ulog"
+	"cattlecloud.net/go/atomicfs"
+	"cattlecloud.net/go/ulog"
 )
 
 type Builder struct {

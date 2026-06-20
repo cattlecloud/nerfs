@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"noxide.lol/go/ulog"
-	"noxide.lol/go/xtc"
+	"cattlecloud.net/go/scope"
+	"cattlecloud.net/go/ulog"
 )
 
 // Source contains a URI from which we can acquire a set of unwanted domains.
@@ -27,7 +27,7 @@ func NewSource(url string) *Source {
 }
 
 func (s *Source) Get(a *Artifact) error {
-	ctx, cancel := xtc.TTL(30 * time.Second)
+	ctx, cancel := scope.TTL(30 * time.Second)
 	defer cancel()
 
 	request, rerr := http.NewRequestWithContext(ctx, http.MethodGet, s.url, nil)

@@ -12,9 +12,9 @@ jobs:
     timeout-minutes: 5
     runs-on: fedora-41
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: extractions/setup-just@v2
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           cache: false
           go-version-file: go.mod
@@ -24,4 +24,4 @@ jobs:
           just sysinfo
       - name: Run Go Test
         run: |
-          just init tidy lint test
+          just init tidy lint tests
