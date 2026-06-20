@@ -19,7 +19,7 @@ func NewArtifact() *Artifact {
 
 func (a *Artifact) Add(line string) {
 	// given line is directly from words.txt which is in the form
-	// <word(s)> -> <regexp>
+	// <word> -> <regexp>
 
 	tokens := strings.Split(line, "->")
 	if len(tokens) != 2 {

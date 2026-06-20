@@ -8,19 +8,19 @@ export GOBIN := `echo $PWD/.bin`
 default:
     @just --list
 
-# start nerfs-builds artifact builder in demo mode
+# start nerfs artifact builder in demo mode
 run mode: compile
-    $GOBIN/nerfs-builds {{mode}}
+    $GOBIN/nerfs {{mode}}
 
-# compile the nerfs-builds executable
+# compile the nerfs executable
 compile: tidy
-    cd cmds/nerfs-builds && go install
+    cd cmds/nerfs && go install
 
 # tidy up Go modules
 tidy:
     go mod tidy
 
-# vet the nerfs-compile source tree
+# vet the nerfs source tree
 vet:
     go vet ./...
 
@@ -28,7 +28,7 @@ vet:
 tests:
     go test -race ./...
 
-# lint the nerfs-compile source tree
+# lint the nerfs source tree
 lint: vet
     $GOBIN/golangci-lint run --config $scripts/golangci.yaml
 

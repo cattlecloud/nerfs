@@ -1,0 +1,14 @@
+chink            -> (?i)\bch[i1]nk[s$]?\b
+clit             -> (?i)\bcl[i1]t[s$]?\b
+dago             -> (?i)\bd[a@]g[o0][s$]?\b
+dyke             -> (?i)\bd[i1y]k[e3][s$]?\b
+fag              -> (?i)\bf[a@]g[s$]?\b
+faggot           -> (?i)\bf[a@]gg[o0]t[s$]?\b
+gook             -> (?i)\bg[o0]+k[s$]?\b
+heeb             -> (?i)\bh[e3]b[s$]?\b
+kyke             -> (?i)\bk[i1y]k[e3][s$]?\b
+nigger           -> (?i)\bn[i1]g+[e3]r[zs$]?\b
+spic             -> (?i)\bsp[i1][ck][s$]?\b
+wetback          -> (?i)\bw[e3]tb[a@]c?k?[s$]?\b
+wigger           -> (?i)\bw[i1]gg[e3]r[s$]?\b
+wop              -> (?i)\bw[o0]p[s$]?\b

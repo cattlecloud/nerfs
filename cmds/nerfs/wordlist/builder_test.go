@@ -3,28 +3,29 @@ package wordlist
 import (
 	"encoding/json"
 	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 
+	"cattlecloud.net/nerfs"
 	"github.com/shoenig/test/must"
-	"github.com/shoenig/test/util"
 )
 
 const (
 	// numWords must match the number of expressions in words.txt
-	numWords = 28
+	numWords = 14
 )
 
 func TestBuilder_Build(t *testing.T) {
 	t.Parallel()
 
-	dest := util.TempFile(t)
+	dir := t.TempDir()
 
 	b := NewBuilder()
-	err := b.Build(dest)
+	err := b.Build(dir)
 	must.NoError(t, err)
 
-	f, ferr := os.Open(dest)
+	f, ferr := os.Open(filepath.Join(dir, nerfs.WordsFile))
 	must.NoError(t, ferr)
 
 	m := make(map[string]*regexp.Regexp)
@@ -34,8 +35,6 @@ func TestBuilder_Build(t *testing.T) {
 
 	t.Run("spot checks", func(t *testing.T) {
 		must.RegexMatch(t, m["wop"], "wop")
-		must.RegexMatch(t, m["coom"], "c00m$")
-		must.RegexMatch(t, m["camel jockey"], "c@m3l-jock3ys")
 		must.RegexMatch(t, m["dago"], "d@g0$")
 
 		// non-matching due to word boundary
