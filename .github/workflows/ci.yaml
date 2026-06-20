@@ -10,7 +10,7 @@ on:
 jobs:
   run-tests:
     timeout-minutes: 5
-    runs-on: fedora-41
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - uses: extractions/setup-just@v2

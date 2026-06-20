@@ -53,3 +53,13 @@ lint: vet
 [group('build')]
 init:
     go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.11.4
+
+# deploy artifact
+[group('deploy')]
+deploy host:
+    HOST={{host}} envy exec gh-cattle $scripts/deploy.sh nerfs
+
+# create release artifact
+[group('deploy')]
+artifact:
+    gh workflow run build.yaml
